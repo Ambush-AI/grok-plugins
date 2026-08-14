@@ -1,0 +1,22 @@
+{
+  "name": "ambush-streams",
+  "version": "0.2.0",
+  "description": "Create, process, deliver, review, and manage personalized Ambush news streams from Grok.",
+  "author": {
+    "name": "Ambush AI",
+    "email": "support@ambush.ai",
+    "url": "https://ambush.ai"
+  },
+  "homepage": "https://ambush.ai",
+  "repository": "https://github.com/Ambush-AI/grok-plugins",
+  "keywords": [
+    "ambush",
+    "streams",
+    "news",
+    "monitoring",
+    "alerts",
+    "delivery"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}

@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "plugins": {
+    "ambush-streams": {
+      "version": "0.2.0",
+      "components": {
+        "mcpServers": [
+          {
+            "name": "ambush-streams",
+            "description": "OAuth HTTP"
+          }
+        ],
+        "skills": [
+          {
+            "name": "manage-ambush-streams",
+            "description": "Create and manage Ambush news streams, review emitted news, and configure per-event processing and delivery."
+          }
+        ]
+      }
+    }
+  }
+}

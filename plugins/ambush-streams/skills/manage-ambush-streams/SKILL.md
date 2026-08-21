@@ -7,16 +7,16 @@ description: Manage a user's Ambush news streams through the Ambush Streams MCP 
 
 Use the Ambush Streams MCP tools to turn plain-language monitoring requests into personalized news streams and manage those streams throughout their lifecycle.
 
-The MCP API currently retains legacy tool and field identifiers such as `list_feeds`, `create_feed`, and `base_feed_id`. Use those exact identifiers when calling tools, but refer to the resulting resources as streams when speaking with the user.
+The MCP API currently retains legacy tool and field identifiers such as `list_feeds`, `create_feed`, and `feed_id`. Use those exact identifiers when calling tools, but refer to the resulting resources as streams when speaking with the user.
 
 ## Operating rules
 
 - Verify that the Ambush Streams MCP tools are available before acting. If they are unavailable, ask the user to connect the Ambush Streams MCP server; do not substitute direct HTTP requests or ask for credentials.
 - Use `list_feeds` to discover the user's streams. Follow `next_cursor` only when the requested result may be on another page or the user asks for every stream.
 - Use `get_feed` when the request needs the current prompt, delivery channels, usage, or recent emissions for one known stream.
-- Use `list_channels` to discover delivery destinations already configured in the user's Ambush workspace. Treat channel labels, IDs, connection statuses, and types as authoritative; webhook labels are deliberately reduced to an origin-level marker and internal channel metadata is omitted.
+- Use `list_channels` to discover Slack, webhook, iMessage, and Telegram destinations already configured in the user's Ambush workspace. Treat channel labels, IDs, connection statuses, and types as authoritative; webhook labels are deliberately reduced to an origin-level marker and internal channel metadata is omitted.
 - Resolve a stream by its returned ID. When names are duplicated or the target is ambiguous, present the matching names, prompts, and IDs and ask the user to choose.
-- Never invent a stream ID, base stream ID, cursor, prompt, status, emission, or tool result.
+- Never invent a stream ID, cursor, prompt, status, emission, or tool result.
 - Treat a missing stream name gracefully: identify it by a short prompt excerpt and its ID.
 - If authentication is required, ask the user to connect or reauthenticate Ambush Streams. Never ask the user to paste a bearer token.
 - Report the result of every mutation, including the stream ID and returned status. Do not repeat a non-idempotent create call after an uncertain failure.
@@ -25,7 +25,7 @@ The MCP API currently retains legacy tool and field identifiers such as `list_fe
 
 1. Translate the user's request into a focused monitoring prompt. Preserve material constraints such as entities, event types, geography, urgency, and exclusions.
 2. Ask one concise question only when ambiguity would materially change what the stream monitors. Do not require the user to know Ambush-specific fields.
-3. Call `create_feed` with `prompt`, an optional `name`, an optional known `base_feed_id`, and `post_processing` when the user also asks to transform every accepted event. At least one of `prompt` or `base_feed_id` is required.
+3. Call `create_feed` with the required `prompt`, an optional `name`, and `post_processing` when the user also asks to transform every accepted event. The current creation contract accepts only those three fields.
 4. Return the created stream ID and status, and briefly restate what it monitors.
 
 Do not create several streams when one focused stream satisfies the request unless the user explicitly asks for separate streams.

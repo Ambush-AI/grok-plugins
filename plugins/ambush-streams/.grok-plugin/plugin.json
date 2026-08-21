@@ -1,6 +1,6 @@
 {
   "name": "ambush-streams",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Create, process, deliver, review, and manage personalized Ambush news streams from Grok.",
   "author": {
     "name": "Ambush AI",
